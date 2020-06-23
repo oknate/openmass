@@ -813,6 +813,24 @@ function mass_theme_preprocess_node_org_page(&$variables) {
 
   // Prepare the schema.governmentOrganization data object.
   $variables['schema'] = Schemas::prepareGovernmentOrganization($variables);
+
+  // Add dynamic Formstack form to use in survey.
+  $formstack_script = '<script type="text/javascript" src="https://massgov.formstack.com/forms/js.php/feedback_followup_survey"></script><noscript><a href="https://massgov.formstack.com/forms/feedback_followup_survey" title="Online Form">Online Form - Feedback follow-up survey</a></noscript>';
+  try {
+    $crawler = new Crawler($formstack_script);
+    $script_url = $crawler->filterXPath('//script[@src]')->attr('src');
+    $noscript_url = $crawler->filterXPath('//noscript/a[@href]')->attr('href');
+
+    $query = ['no_style_strict' => 1];
+    $query['jsonp'] = 1;
+    $variables['form_url'] = Url::fromUri($script_url, ['query' => $query])->toString();
+    $variables['form_url_noscript'] = $noscript_url;
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('mass_fields')->warning('Parsing of formstack URL failed: %message', [
+      '%message' => $e->getMessage(),
+    ]);
+  }
 }
 
 /**
