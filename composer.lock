@@ -10168,9 +10168,6 @@
             "provide": {
                 "psr/http-message-implementation": "1.0"
             },
-            "replace": {
-                "zendframework/zend-diactoros": "~1.8.7.0"
-            },
             "require-dev": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
