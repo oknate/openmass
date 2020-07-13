@@ -23,8 +23,6 @@ dependencies:
     - mass_validation
     - metatag
     - paragraphs
-    - scheduler
-    - scheduler_content_moderation_integration
     - text
 third_party_settings:
   field_group:
@@ -246,17 +244,17 @@ content:
     region: content
     third_party_settings: {  }
   publish_on:
-    type: datetime_timestamp_no_default
-    weight: 5
-    region: content
+    weight: 53
     settings: {  }
     third_party_settings: {  }
+    type: datetime_timestamp
+    region: content
   publish_state:
-    type: scheduler_moderation
-    weight: 9
-    region: content
+    weight: 51
     settings: {  }
     third_party_settings: {  }
+    type: options_select
+    region: content
   scheduler_settings:
     weight: 4
     region: content
@@ -281,17 +279,17 @@ content:
     third_party_settings: {  }
     region: content
   unpublish_on:
-    type: datetime_timestamp_no_default
-    weight: 6
-    region: content
+    weight: 54
     settings: {  }
     third_party_settings: {  }
+    type: datetime_timestamp
+    region: content
   unpublish_state:
-    type: scheduler_moderation
-    weight: 10
-    region: content
+    weight: 52
     settings: {  }
     third_party_settings: {  }
+    type: options_select
+    region: content
   url_redirects:
     weight: 50
     settings: {  }
